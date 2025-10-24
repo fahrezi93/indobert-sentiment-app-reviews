@@ -1,13 +1,20 @@
 # 📱 Analisis Sentimen Ulasan Aplikasi Transportasi Online
 
-Analisis sentimen untuk ulasan aplikasi transportasi online Indonesia (Gojek, Grab, Maxim) menggunakan **IndoBERT** dari Google Play Store.
+Analisis sentimen untuk ulasan aplikasi transportasi online Indonesia (Gojek, Grab) menggunakan **IndoBERT** dari Google Play Store.
 
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
 ## 🎯 Tentang Proyek
 
-Project ini menganalisis sentimen (positif/negatif/netral) dari review aplikasi transportasi online menggunakan model **IndoBERT** (`w11wo/indobert-sentiment-classification`).
+Project ini menganalisis sentimen (positif/negatif/netral) dari review aplikasi transportasi online menggunakan model **IndoBERT** (`mdhugol/indonesia-bert-sentiment-classification`).
+
+### ✨ Update Terbaru (v2.0)
+- ✅ **Model diganti** ke `mdhugol/indonesia-bert-sentiment-classification` (lebih stabil & akurat)
+- ✅ **Label mapping diperbaiki** (LABEL_0=positif, LABEL_1=netral, LABEL_2=negatif)
+- ✅ **Confidence scores diperbaiki** untuk akurasi yang lebih baik
+- ✅ **Validasi otomatis** untuk memastikan model bekerja dengan benar
+- ✅ **Class imbalance detection** untuk warning jika data tidak seimbang
 
 ### Fitur
 - 🔍 Scraping review dari Play Store  
@@ -113,16 +120,34 @@ MAX_SEQ_LEN=256
 
 ## ⚠️ Catatan Penting
 
-- Model IndoBERT pre-trained, performa tergantung data training asli
+### Performa Model
+- **Overall Accuracy: ~81%** untuk dataset Gojek & Grab
+- **Positif & Negatif: Sangat Baik** (F1-score >80%)
+- **Netral: Lemah** (F1-score ~9%) karena class imbalance
+- Model pre-trained, performa tergantung data training asli
+
+### Limitasi
 - Review sarkastik mungkin salah klasifikasi
 - Bahasa campuran Indonesia-Inggris mungkin kurang akurat
+- Sentimen netral sulit diprediksi karena data training sedikit
 - Scraping harus mematuhi Terms of Service Google Play Store
-- Project ini untuk keperluan edukasi/riset
+
+### Rekomendasi Perbaikan
+1. **Tambah data netral** (minimal 500-800 review dengan rating 3)
+2. **Pertimbangkan binary classification** (positif vs negatif saja) untuk accuracy >90%
+3. **Fine-tune model** dengan data domain-specific jika perlu
+4. **Gunakan ensemble methods** untuk hasil lebih robust
+
+### Penggunaan
+- Project ini untuk keperluan **edukasi/riset**
+- Tidak untuk production tanpa validasi lebih lanjut
 
 ## 📝 Referensi
 
-- [IndoBERT Model](https://huggingface.co/w11wo/indobert-sentiment-classification) - Model sentiment analysis
+- [IndoBERT Model (mdhugol)](https://huggingface.co/mdhugol/indonesia-bert-sentiment-classification) - Model sentiment analysis yang digunakan
+- [IndoLEM & IndoBERT Paper](https://arxiv.org/abs/2011.00677) - Paper tentang IndoBERT
 - [google-play-scraper](https://github.com/JoMingyu/google-play-scraper) - Library untuk scraping Play Store
+- [Transformers by Hugging Face](https://huggingface.co/docs/transformers) - Library untuk NLP
 
 ## � License
 
